@@ -1,0 +1,14 @@
+.App {
+  margin: 30px;
+  color: #0c4700;
+  background-color: #bdedff;
+  font-family: Arial;
+}
+
+.UserOutput {
+  width: 60%;
+  padding: 16px;
+  margin: 16px;
+  border: 2px solid green;
+  text-align: center;
+}
