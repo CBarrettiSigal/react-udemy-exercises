@@ -5,7 +5,7 @@ import './App.css';
 import Person from './Person/Person.js';
 
 const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
+  background-color: ${props => props.altStyle ? 'red' : 'green'};
   color: white;
   font: inherit;
   border: 1px solid blue;
@@ -14,7 +14,7 @@ const StyledButton = styled.button`
   border-radius: 5px;
 
   &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+    background-color: ${props => props.altStyle ? 'salmon' : 'lightgreen'};
     color: black;
   }
 `;
@@ -22,9 +22,9 @@ const StyledButton = styled.button`
 class App extends Component {
   state = {
     persons: [
-      { id: 'asfa1', name: 'Max', age: 28 },
-      { id: 'vasdf1', name: 'Manu', age: 29 },
-      { id: 'asdf11', name: 'Stephanie', age: 26 }
+      { id: 'asdf', name: 'Cricket', age: 37 },
+      { id: 'uiop', name: 'Christian', age: 39 },
+      { id: 'jkl', name: 'Sarah', age: 29 }
     ],
     otherState: 'some other value',
     showPersons: false
@@ -56,19 +56,23 @@ class App extends Component {
     this.setState({ persons: persons });
   };
 
+  // one option for immutability: slice method copies the array before altering it
+    // const persons = this.state.persons.slice();
+    // or, 2nd option; create a new array using spread operator and put contents of old persons array into it
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({ showPersons: !doesShow });
   };
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
+    const buttonStyle = {
+      backgroundColor: '#195106',
+      color: '#0fc7be',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer',
+      borderRadius: '4px',
       ':hover': {
         backgroundColor: 'lightgreen',
         color: 'black'
@@ -93,27 +97,32 @@ class App extends Component {
           })}
         </div>
       );
-
-      // style.backgroundColor = 'red';
-      // style[':hover'] = {
-      //   backgroundColor: 'salmon',
-      //   color: 'black'
-      // };
+      // buttonStyle.backgroundColor = 'hsl(312, 81%, 37%)';
+      //   buttonStyle[':hover'] = {
+      //     color: 'brown',
+      //     backgroundColor: 'pink'
+      //   }
+      //   buttonStyle.color = 'hsl(182, 81%, 70%)'
     }
 
     const classes = [];
     if (this.state.persons.length <= 2) {
       classes.push('red'); // classes = ['red']
     }
+    // this is different from an else if because we want BOTH
+
     if (this.state.persons.length <= 1) {
       classes.push('bold'); // classes = ['red', 'bold']
     }
 
+      // we need join because now classes is an array but we need a string
+      // without styled components package, 'StyledButton' goes back to being 'button'
+      // style={buttonStyle} was removed from button for styled-components
     return (
       <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>
+        <h1>Hi, I'm a React App by Cricket</h1>
+        <p className={classes.join(' ')}>It sure is a relief when this works...</p>
+        <StyledButton altStyle={this.state.showPersons} onClick={this.togglePersonsHandler}>
           Toggle Persons
         </StyledButton>
         {persons}
