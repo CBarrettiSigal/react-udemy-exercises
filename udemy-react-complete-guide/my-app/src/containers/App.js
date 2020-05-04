@@ -5,7 +5,12 @@ import classes from './App.module.css';
 import Persons from '../components/Persons/Persons.js';
 
 class App extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor');
+  }
+
+   state = {
     persons: [
       { id: 'asdf', name: 'Cricket', age: 37 },
       { id: 'uiop', name: 'Christian', age: 39 },
@@ -13,7 +18,22 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPersons: false
-  };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+  }
+
+  // this one is probably going to be phased out
+  // componentWillMount() {
+  //   console.log('[App.js] componentWillMount');
+  // }
+
+  componentDidMount(props) {
+    console.log('[App.js] componentDidMount', props);
+  }
+
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -47,6 +67,7 @@ class App extends Component {
   };
 
   render() {
+    console.log('[App.js] render');
     let persons = null;
 
     if (this.state.showPersons) {
@@ -60,6 +81,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
       <Cockpit
+        title={this.props.appTitle}
         showPersons={this.state.showPersons}
         persons={this.state.persons}
         clicked={this.togglePersonsHandler} />
