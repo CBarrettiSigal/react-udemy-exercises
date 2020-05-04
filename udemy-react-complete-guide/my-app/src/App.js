@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
-import './App.css';
+import classes from './App.module.css';
 import Person from './Person/Person.js';
 
-const StyledButton = styled.button`
-  background-color: ${props => props.altStyle ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 5px;
+// const StyledButton = styled.button`
+//   background-color: ${props => props.altStyle ? 'red' : 'green'};
+//   color: white;
+//   font: inherit;
+//   border: 1px solid blue;
+//   padding: 8px;
+//   cursor: pointer;
+//   border-radius: 5px;
 
-  &:hover {
-    background-color: ${props => props.altStyle ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
+//   &:hover {
+//     background-color: ${props => props.altStyle ? 'salmon' : 'lightgreen'};
+//     color: black;
+//   }
+// `;
 
 class App extends Component {
   state = {
@@ -65,21 +65,22 @@ class App extends Component {
   };
 
   render() {
-    const buttonStyle = {
-      backgroundColor: '#195106',
-      color: '#0fc7be',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      borderRadius: '4px',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
+    // const buttonStyle = {
+    //   backgroundColor: '#195106',
+    //   color: '#0fc7be',
+    //   font: 'inherit',
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    //   borderRadius: '4px',
+    //   ':hover': {
+    //     backgroundColor: 'lightgreen',
+    //     color: 'black'
+    //   }
+    // };
 
     let persons = null;
+    let btnClass = [classes.Button];
 
     if (this.state.showPersons) {
       persons = (
@@ -97,6 +98,8 @@ class App extends Component {
           })}
         </div>
       );
+
+      btnClass.push(classes.Red);
       // buttonStyle.backgroundColor = 'hsl(312, 81%, 37%)';
       //   buttonStyle[':hover'] = {
       //     color: 'brown',
@@ -105,30 +108,35 @@ class App extends Component {
       //   buttonStyle.color = 'hsl(182, 81%, 70%)'
     }
 
-    const classes = [];
+    const assignedClasses = [];
     if (this.state.persons.length <= 2) {
-      classes.push('red'); // classes = ['red']
+      assignedClasses.push('red'); // classes = ['red']
     }
     // this is different from an else if because we want BOTH
 
     if (this.state.persons.length <= 1) {
-      classes.push('bold'); // classes = ['red', 'bold']
+      assignedClasses.push('bold'); // classes = ['red', 'bold']
     }
 
       // we need join because now classes is an array but we need a string
       // without styled components package, 'StyledButton' goes back to being 'button'
       // style={buttonStyle} was removed from button for styled-components
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm a React App by Cricket</h1>
-        <p className={classes.join(' ')}>It sure is a relief when this works...</p>
-        <StyledButton altStyle={this.state.showPersons} onClick={this.togglePersonsHandler}>
-          Toggle Persons
-        </StyledButton>
+        <p className={assignedClasses.join(' ')}>It sure is a relief when this works...</p>
+        <button className={btnClass.join(' ')} onClick={this.togglePersonsHandler}>
+        Toggle People
+        </button>
         {persons}
       </div>
     );
+
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
+        // previous StyledButton component, set aside for now
+        // <StyledButton altStyle={this.state.showPersons} onClick={this.togglePersonsHandler}>
+        // Toggle Persons
+        // </StyledButton>
   }
 }
 
