@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import styled from 'styled-components';
 
 import classes from './App.module.css';
-import Person from './Person/Person.js';
+import Person from '../components/Persons/Person/Person.js';
 
 // const StyledButton = styled.button`
 //   background-color: ${props => props.altStyle ? 'red' : 'green'};
@@ -124,10 +124,10 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <h1>Hi, I'm a React App by Cricket</h1>
-        <p className={assignedClasses.join(' ')}>It sure is a relief when this works...</p>
-        <button className={btnClass.join(' ')} onClick={this.togglePersonsHandler}>
-        Toggle People
-        </button>
+        <p className={assignedClasses.join( ' ' )}>It sure is a relief when this works...</p>
+        <button
+          className={btnClass.join(' ')}
+          onClick={this.togglePersonsHandler}>Toggle People</button>
         {persons}
       </div>
     );
