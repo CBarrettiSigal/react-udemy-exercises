@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.module.css';
 
-const cockpit = (props) => {
+const Cockpit = (props) => {
+  useEffect(() => {
+    // this is basically componentDidMount and componentDidUpdate in one step
+    console.log('[Cockpit.js]useEffect');
+    // can send HTTP request in here
+    setTimeout(() => {
+      alert('Dummy Alert');
+     }, 1000);
+      return () =>{
+        console.log('[Cockpit.js] cleanup work in useEffect')
+      };
+;  }, []);
+  // now this will only perform the action the FIRST time the page loads
+
+  useEffect(() => {
+    console.log('[Cockpit.js] 2nd useEffect');
+    return () => {
+      console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+    };
+  });
+
     const assignedClasses = [];
     let btnClass = '';
 
@@ -9,12 +29,12 @@ const cockpit = (props) => {
       btnClass = classes.Red;
     }
 
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {
       assignedClasses.push(classes.red); // classes = ['red']
     }
     // this is different from an else if because we want BOTH
 
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
       assignedClasses.push(classes.bold); // classes = ['red', 'bold']
     }
 
@@ -28,5 +48,5 @@ const cockpit = (props) => {
     </div>
     );
 }
-
-export default cockpit;
+// memo will store a snapshot of the component and only re render if its input changes
+export default React.memo(Cockpit);
