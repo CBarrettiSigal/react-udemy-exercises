@@ -1,2 +1,2 @@
-The most interesting code will be found inside udemy-react-complete-guide, in my-app
+The most interesting code will be found inside udemy-react-complete-guide, in burger-builder-app and my-app
 This is just a repo for me to follow along with Udemy/ Academind's React-Redux Complete Guide Course. I realized about a third of the way through the class that doing version control would be really helpful, because the packages that are used for demonstration purposes change very frequently and some are deleted and never returned to. Also, the class is a few years old so certain things break inexplicably and I figured I should start making it more possible to go back in time.
