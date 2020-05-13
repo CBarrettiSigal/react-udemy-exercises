@@ -22,6 +22,11 @@
   transform: translateX(0);
 }
 
-.Closed {
+.Close {
   transform: translateX(-100%);
+}
+/* it is okay to have multiple .Logo classes of the same name because of CSS Modules*/
+.Logo {
+  height: 11%;
+  margin-bottom: 32px;
 }
