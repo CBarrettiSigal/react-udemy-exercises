@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Aux from '../../hoc/Aux';
+import Aux from '../../hoc/Aux/Aux';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
@@ -17,8 +17,8 @@ class BurgerBuilder extends Component {
     // this is an object, not an array, so we have to transform this into an array
     ingredients: {
       lettuce: 0,
-      bacon: 0,
       cheese: 0,
+      bacon: 0,
       meat: 0
     },
     totalPrice: 4,
